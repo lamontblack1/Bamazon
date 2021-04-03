@@ -61,10 +61,10 @@ node bamazonSupervisor.js
 # Screen Shots of the Working App
 
 ### Both functions of bamazonCustomer.js
-[image of unfulfilled order](https://lamontblack1.github.io/bamazon/images/customerInsufficient.jpg)
+![image of unfulfilled order](https://lamontblack1.github.io/bamazon/images/customerInsufficient.jpg)
 
-[image of fulfilled order](https://lamontblack1.github.io/bamazon/images/customerFulfilled.jpg)
+![image of fulfilled order](https://lamontblack1.github.io/bamazon/images/customerFulfilled.jpg)
 
 ### Both functions of bamazonSupervisor.js
-[image of unfulfilled order](https://lamontblack1.github.io/bamazon/images/manager.jpg)
+![image of unfulfilled order](https://lamontblack1.github.io/bamazon/images/manager.jpg)
 
