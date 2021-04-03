@@ -13,4 +13,12 @@ VALUES
 ("Vitamin C Capsules 500mg 100ct", "Supplements", 15.99, 23),
 ("Vitamin D tablets 100mg 50ct", "Supplements", 12.99, 19);
 
+INSERT INTO departments (department_name, over_head_costs),
+VALUES
+("Health and Beauty", 1123.50)
+("Housewares", 1357.87),
+("Recreation", 2433.67),
+("Computers", 3621.33),
+("Supplements", 836.28);
+
 SELECT * FROM products;

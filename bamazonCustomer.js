@@ -83,22 +83,23 @@ function checkQtyForOrder(itemID, requestQty) {
              //Check if there is enough, if so, exec order
              let qtyInStock = res[0].stock_quantity
              if (qtyInStock < requestQty) {
-                 console.log("Insufficient Quantity! There are only " + qtyInStock + " of these in stock. Your order has been cancelled.")
+                 console.log("\nInsufficient Quantity! There are only " + qtyInStock + " of these in stock. Your order has been cancelled.\n")
                  read("products")
              } else {
-                execOrder(itemID, requestQty, qtyInStock, res[0].price)
+                execOrder(itemID, requestQty, qtyInStock, res[0].price, res[0].product_sales)
              }
          }
     });  
 }
 
-function execOrder(itemID, requestQty, qtyInStock, itemPrice) {
+function execOrder(itemID, requestQty, qtyInStock, itemPrice, sales) {
     let queryURL = "UPDATE products SET ? WHERE ?"
      connection.query(
         queryURL,
         [
         {
-            stock_quantity: (qtyInStock - requestQty)
+            stock_quantity: (qtyInStock - requestQty),
+            product_sales: (sales + itemPrice * requestQty)
         },
         {
             item_id: itemID
@@ -114,13 +115,27 @@ function execOrder(itemID, requestQty, qtyInStock, itemPrice) {
 
 //the npm render to table didn't work for me so I just started making my own decent render
 function printToConsole(result) {
-    let colWidths = [3, 40, 20, 6, 4]
-    let fields = ["item_id", "product_name", "department_name", "price", "stock_quantity"]
-        console.log("ID  | Product                                 | Department          |Price  | Qty");
-        console.log("--------------------------------------------------------------------------------------------------------")
+    let colWidths = [0, 25, 10, 2, 0, 0]
+    let fields = []
+        for (const property in result[0]) {
+            let x = fields.push(property);
+            colWidths[x-1] += property.length
+        }
+        let consoleLine = ""
+            for (let j = 0; j < fields.length; j++) {
+                consoleLine += fields[j];
+                const colWidth = colWidths[j]
+                    for (let k = fields[j].length; k < colWidth+1; k++) {
+                        consoleLine += " "
+                    };
+                consoleLine += "|"
+            }
+        console.log(consoleLine)
+         // console.log("ID  | Product                                 | Department          |Price  | Qty | Sales |");
+        console.log("-------------------------------------------------------------------------------------------------------------------")
         for (let i = 0; i < result.length; i++) {
             const lineElement = result[i];
-            let consoleLine = ""
+            consoleLine = ""
             for (let j = 0; j < fields.length; j++) {
                 const fieldValue = lineElement[fields[j]].toString();
                 consoleLine += fieldValue;
@@ -133,6 +148,6 @@ function printToConsole(result) {
             console.log(consoleLine)
             // console.log(element.item_id + "  |  " + element.product_name + "  |  " + element.department_name + "  |  " + element.price + "  |  " + element.stock_quantity)
         }
-            console.log("--------------------------------------------------------------------------------------------------------\n")
+            console.log("--------------------------------------------------------------------------------------------------------------------\n")
 
 };
