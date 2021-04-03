@@ -30,7 +30,6 @@ I could not find a very straightforward package that would render a table in the
             consoleLine += "|"
         }
         console.log(consoleLine)
-         // console.log("ID  | Product                                 | Department          |Price  | Qty | Sales |");
         console.log("-------------------------------------------------------------------------------------------------------------------")
         for (let i = 0; i < result.length; i++) {
             const lineElement = result[i];
@@ -56,15 +55,16 @@ I could not find a very straightforward package that would render a table in the
 This is a command line app that is run in Node. It can be run entering the following in the terminal:
 
 node bamazonCustomer.js
+or
 node bamazonSupervisor.js
 
 # Screen Shots of the Working App
 
 ### Both functions of bamazonCustomer.js
-[image of unfulfilled order](https://lamontblack1.github.io/bamazon/customerInsufficient.jpg)
+[image of unfulfilled order](https://lamontblack1.github.io/bamazon/images/customerInsufficient.jpg)
 
-[image of fulfilled order](https://lamontblack1.github.io/bamazon/customerFulfilled.jpg)
+[image of fulfilled order](https://lamontblack1.github.io/bamazon/images/customerFulfilled.jpg)
 
 ### Both functions of bamazonSupervisor.js
-[image of unfulfilled order](https://lamontblack1.github.io/bamazon/manager.jpg)
+[image of unfulfilled order](https://lamontblack1.github.io/bamazon/images/manager.jpg)
 
